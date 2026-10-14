@@ -11,7 +11,11 @@ describe('preview boundaries', () => {
     ['/privacy', 'not an encrypted vault'],
     ['/missing', 'Page not found'],
   ])('%s explains its real capabilities', (path, message) => {
-    const html = renderToStaticMarkup(<MemoryRouter initialEntries={[path]}><App /></MemoryRouter>);
+    const html = renderToStaticMarkup(
+      <MemoryRouter initialEntries={[path]}>
+        <App />
+      </MemoryRouter>,
+    );
     expect(html).toContain(message);
     expect(html).not.toMatch(/<(input|textarea|form)\b/);
   });
