@@ -15,7 +15,7 @@ Code-quality pass: read the routes/focus effect, shared components, hosting vali
 ## Final local evidence
 
 - `npm run check`: exit 0. `Tests 13 passed (13)`; `found 0 vulnerabilities`.
-- `npm run test:browser -- --project=desktop-chromium --project=mobile-chromium`: `14 passed (13.0s)`. This includes asserting served policy headers and an actual browser fetch rejected by CSP.
+- `npm run test:browser -- --project=desktop-chromium --project=mobile-chromium`: `14 passed (13.0s)`; final formatting-only rerun: `14 passed (12.3s)`. This includes asserting served policy headers and an actual browser fetch rejected by CSP.
 - Production build after removing the unused option: JS 271.19 kB / 85.83 kB gzip; CSS 8.77 kB / 2.57 kB gzip.
 - [Desktop screenshot](previews/home-desktop.png) and [mobile screenshot](previews/home-mobile.png) were captured from the production bundle and visually inspected. They are design evidence, not pixel-regression baselines.
 
@@ -27,8 +27,12 @@ Boundary sweep across application/build source: zero sorting constructs, zero tr
 
 No remaining foundation blocker found. Formatting was normalized after review without adding a runtime dependency; checks were rerun before publication of the branch. Browser/platform accessibility and hosting claims stop at the evidence boundaries below.
 
+## Hosted CI evidence
+
+[GitHub Actions run 38491875571](https://github.com/rlawoals0529/Homeward/actions/runs/38491875571) passed on commit `76e94e8`: check/install/audit passed and **`21 passed (20.4s)`** across desktop Chromium, mobile Chromium and desktop Firefox. This resolves the Firefox application coverage gap on Linux; Windows Firefox launch remains unavailable. CI uploaded the browser report and screenshots. The runner label is now pinned to `ubuntu-24.04` to avoid the announced `ubuntu-latest` migration; subsequent PR checks verify that configuration on the current head.
+
 Acceptance gates:
-- [ ] Public repository confirmed following explicit visibility authorization; bounded branch and draft PR.
+- [x] Public repository confirmed following explicit visibility authorization; bounded branch and draft PR. Evidence: GitHub reports PUBLIC; branch `foundation/app-shell`; [draft PR #1](https://github.com/rlawoals0529/Homeward/pull/1). Linux CI runs on this PR; consult its checks for current status.
 - [x] TypeScript, ESLint, unit tests and production build. Evidence: check exit 0; 13 tests passed.
 - [x] Advisory audit and static-hosting validation, including negative probes. Evidence: 0 vulnerabilities; 4 allowlisted files; invalid-path/config probes passed.
 - [x] Desktop/mobile Chromium routes, focus, reflow and automated accessibility checks. Evidence: 14 passed; six-route axe scans returned no detected violations. Local Firefox unavailable as described above.
