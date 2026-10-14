@@ -1,0 +1,17 @@
+:root {
+  color-scheme: light;
+  --paper: #f6f2e9;
+  --surface: #fffcf6;
+  --ink: #26342f;
+  --muted: #5f665e;
+  --forest: #365a4c;
+  --focus: #245b70;
+  --border: #817b70;
+  --divider: #ded7ca;
+  --wash: #eceee5;
+  --error: #9b3434;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: 'Segoe UI', system-ui, sans-serif;
+  --radius-control: 6px;
+  --radius-surface: 10px;
+}
